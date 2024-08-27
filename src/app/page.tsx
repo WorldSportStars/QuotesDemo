@@ -29,8 +29,8 @@ import {
 } from './StyledComponents';
 import { BASE_SEPOLIA_CHAIN_ID, mintContractAddress, mintABI } from '../constants';
 
-const PINATA_API_KEY = '3b8bed010765358336e4';
-const PINATA_API_SECRET = 'ee9c9a55b0f821bf6fd35eb8a4954d0a82c4d80d859b4055e6586851600b27f0';
+const PINATA_API_KEY = process.env.NEXT_PUBLIC_PINATA_API_KEY;
+const PINATA_API_SECRET = process.env.NEXT_PUBLIC_PINATA_API_SECRET;
 const UNSPLASH_ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
 export default function Page() {
