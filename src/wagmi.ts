@@ -1,4 +1,5 @@
 'use client';
+
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   coinbaseWallet,
@@ -8,10 +9,12 @@ import {
 import { useMemo } from 'react';
 import { http, createConfig } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
-import { NEXT_PUBLIC_WC_PROJECT_ID } from './config';
 
-export function useWamigConfig() {
-  const projectId = NEXT_PUBLIC_WC_PROJECT_ID ?? '';
+// Import zmiennych środowiskowych
+const NEXT_PUBLIC_COINBASE_RPC_URL = process.env.NEXT_PUBLIC_COINBASE_RPC_URL ?? '';
+
+export function useWagmiConfig() {
+  const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID ?? '';
   if (!projectId) {
     const providerErrMessage =
       'To connect to all Wallets you need to provide a NEXT_PUBLIC_WC_PROJECT_ID env variable';
@@ -37,13 +40,20 @@ export function useWamigConfig() {
     );
 
     const wagmiConfig = createConfig({
-      chains: [baseSepolia],
-      // turn off injected provider discovery
-      multiInjectedProviderDiscovery: false,
+      chains: [
+        {
+          ...baseSepolia,
+          rpcUrls: {
+            default: {
+              http: [NEXT_PUBLIC_COINBASE_RPC_URL],
+            },
+          },
+        },
+      ],
       connectors,
       ssr: true,
       transports: {
-        [baseSepolia.id]: http(),
+        [baseSepolia.id]: http(NEXT_PUBLIC_COINBASE_RPC_URL),
       },
     });
 

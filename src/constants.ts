@@ -1,37 +1,84 @@
 export const BASE_SEPOLIA_CHAIN_ID = 84532;
 
-export const clickContractAddress =
-  '0x67c97D1FB8184F038592b2109F854dfb09C77C75';
+// Adres Twojego kontraktu NFT Collection
+export const mintContractAddress = '0x120A8Ccbd292934E87A7803a66e9C1982C89D549';
 
-export const clickContractABI = [
-  {
-    type: 'function',
-    name: 'click',
-    inputs: [],
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-] as const;
-
-export const collectionAddress = '0xd6915560d3bb24aec04dc42ef409921ed1931510';
-export const comment = 'testing';
-export const mintContractAddress = '0x777777722D078c97c6ad07d9f36801e653E356Ae';
 export const mintABI = [
   {
     inputs: [
-      { internalType: 'address', name: 'mintTo', type: 'address' },
-      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
-      { internalType: 'address', name: 'collection', type: 'address' },
-      { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
-      { internalType: 'address', name: 'mintReferral', type: 'address' },
-      { internalType: 'string', name: 'comment', type: 'string' },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address"
+      },
+      {
+        internalType: "string",
+        name: "_uri",
+        type: "string"
+      }
     ],
-    name: 'mint',
-    outputs: [],
-    stateMutability: 'payable',
-    type: 'function',
+    name: "mintTo",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "nonpayable",
+    type: "function"
   },
+  {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    inputs: [],
+    name: "nextTokenIdToMint",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    stateMutability: "view",
+    type: "function"
+  },
+  // Dodane inne potrzebne funkcje i zdarzenia
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address"
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "approved",
+        type: "address"
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256"
+      }
+    ],
+    name: "Approval",
+    type: "event"
+  },
+  // (dodane inne elementy ABI)
 ] as const;
-export const mintReferral = '0x0000000000000000000000000000000000000000';
-export const quantity = '1';
-export const tokenId = '1';

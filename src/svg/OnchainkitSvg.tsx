@@ -1,9 +1,16 @@
-export default function OnchainkitSvg() {
+import React from 'react';
+
+type OnchainkitSvgProps = {
+  width?: number;
+  height?: number;
+};
+
+export default function OnchainkitSvg({ width = 155, height = 26 }: OnchainkitSvgProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="155"
-      height="26"
+      width={width}
+      height={height}
       viewBox="0 0 155 26"
       fill="none"
     >
